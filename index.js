@@ -19,8 +19,10 @@ app.get("/", (req, res) => {
 const startServer = async () => {
   try {
     await connectDB(process.env.MONGODB_URL);
-    app.listen(3000, () => {
-      console.log("Server is running at port http://localhost:3000");
+    app.listen(3000 || process.env.PORT, () => {
+      console.log(
+        `Server is running at port http://localhost:${process.env.PORT || 3000}`
+      );
     });
   } catch (e) {
     console.log(e);
